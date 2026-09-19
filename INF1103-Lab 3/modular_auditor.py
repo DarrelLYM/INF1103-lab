@@ -28,6 +28,14 @@ def calculate_tax(amount):
     """
     return amount * 0.10
 
+def generate_report(total_units, failed_attempts):
+    """
+    Prints the final audit summary report.
+    """
+    print("\n--- Audit Summary Report ---")
+    print(f"Total Deliveries Processed: {total_units}")
+    print(f"Number of Failed/Rejected Entries: {failed_attempts}")
+
 def main():
     total_inventory = 0
     failed_entries = 0
