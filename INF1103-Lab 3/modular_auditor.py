@@ -1,26 +1,31 @@
 def get_valid_input():
     """
-    Prompts the user for input.
-    Returns an integer delivery value or the string 'quit'.
+    Handles prompt and input validation.
+    Returns a valid non-negative integer or the string 'quit'.
+    Tracks and returns 'invalid' on invalid input to count failed attempts.
     """
-    while True:
-        user_input = input("Enter stock quantity (or 'quit' to exit): ").strip()
-        if user_input.lower() == 'quit':
-            return 'quit'
-        try:
-            val = int(user_input)
-            if val < 0:
-                print("Quantity cannot be negative.")
-                continue
-            return val
-        except ValueError:
-            print("Invalid entry. Please enter a valid integer.")
+    user_input = input("Enter stock quantity (or 'quit' to exit): ").strip()
+    
+    if user_input.lower() == 'quit':
+        return 'quit'
+    
+    try:
+        val = int(user_input)
+        if val < 0:
+            print("Invalid entry: Stock quantity cannot be negative.")
+            return 'invalid'
+        return val
+    except ValueError:
+        print("Invalid entry: Please enter a valid integer.")
+        return 'invalid'
 
-def p_delivery(current_total, new_value):
+
+def process_delivery(current_total, new_value):
     """
-    Calculates and returns the new running inventory total.
+    Calculates and returns the updated running total inventory.
     """
     return current_total + new_value
+
 
 def calculate_tax(amount):
     """
@@ -28,32 +33,47 @@ def calculate_tax(amount):
     """
     return amount * 0.10
 
+
 def generate_report(total_units, failed_attempts):
     """
-    Prints the final audit summary report.
+    Prints the required final summary report.
     """
-    print("\n--- Audit Summary Report ---")
-    print(f"Total Deliveries Processed: {total_units}")
-    print(f"Number of Failed/Rejected Entries: {failed_attempts}")
+    print("\n================ AUDIT REPORT ================")
+    print(f"Total Deliveries Processed : {total_units}")
+    print(f"Number of Failed/Rejected Entries : {failed_attempts}")
+    print("==============================================")
+
 
 def main():
-    total_inventory = 0
-    failed_entries = 0
+    # 1. Initialize variables
+    running_total = 0
+    failed_attempts = 0
+    deliveries_count = 0
 
+    # 2. Main continuous loop
     while True:
-        entry = get_valid_input()
-        if entry == 'quit':
+        result = get_valid_input()
+
+        if result == 'quit':
             break
-        
-        # Process input logic
-        total_inventory = process_delivery(total_inventory, entry)
-        tax = calculate_tax(entry)
-        
-    generate_report(total_inventory, failed_entries)
+
+        if result == 'invalid':
+            failed_attempts += 1
+            continue
+
+        # 3. Valid delivery processing
+        running_total = process_delivery(running_total, result)
+        delivery_tax = calculate_tax(result)
+        deliveries_count += 1
+
+        print(f"-> Added {result} units (Tax: {delivery_tax:.2f}). Current Total: {running_total}")
+
+    # 4. Generate final report upon exiting
+    generate_report(running_total, failed_attempts)
+
 
 if __name__ == "__main__":
     main()
-
 
 
 # def main():
