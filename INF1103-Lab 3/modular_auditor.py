@@ -1,9 +1,5 @@
 def get_valid_input():
-    """
-    Handles prompt and input validation.
-    Returns a valid non-negative integer or the string 'quit'.
-    Tracks and returns 'invalid' on invalid input to count failed attempts.
-    """
+    
     user_input = input("Enter stock quantity (or 'quit' to exit): ").strip()
     
     if user_input.lower() == 'quit':
@@ -20,37 +16,30 @@ def get_valid_input():
         return 'invalid'
 
 
-def process_delivery(current_total, new_value):
-    """
-    Calculates and returns the updated running total inventory.
-    """
+def p_delivery(current_total, new_value):
+    
     return current_total + new_value
 
 
-def calculate_tax(amount):
-    """
-    Calculates and returns 10% tax for a given delivery amount.
-    """
+def calc_tax(amount):
+    
     return amount * 0.10
 
 
-def generate_report(total_units, failed_attempts):
-    """
-    Prints the required final summary report.
-    """
+def gen_report(total_units, total_tax, failed_attempts):
+    
     print("\n================ AUDIT REPORT ================")
     print(f"Total Deliveries Processed : {total_units}")
+    print(f"Total Tax Calculated       : ${total_tax:.2f}")
     print(f"Number of Failed/Rejected Entries : {failed_attempts}")
     print("==============================================")
 
 
 def main():
-    # 1. Initialize variables
     running_total = 0
+    total_tax = 0.0
     failed_attempts = 0
-    deliveries_count = 0
 
-    # 2. Main continuous loop
     while True:
         result = get_valid_input()
 
@@ -61,20 +50,17 @@ def main():
             failed_attempts += 1
             continue
 
-        # 3. Valid delivery processing
-        running_total = process_delivery(running_total, result)
-        delivery_tax = calculate_tax(result)
-        deliveries_count += 1
+        running_total = p_delivery(running_total, result)
+        delivery_tax = calc_tax(result)
+        total_tax += delivery_tax
 
-        print(f"-> Added {result} units (Tax: {delivery_tax:.2f}). Current Total: {running_total}")
+        print(f"-> Added {result} units (Tax: ${delivery_tax:.2f}). Current Total: {running_total}")
 
-    # 4. Generate final report upon exiting
-    generate_report(running_total, failed_attempts)
+    gen_report(running_total, total_tax, failed_attempts)
 
 
 if __name__ == "__main__":
     main()
-
 
 # def main():
 #     inventory_total = 0  # 1) Initialize inventory to zero
