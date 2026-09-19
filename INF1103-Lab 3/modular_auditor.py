@@ -16,6 +16,18 @@ def get_valid_input():
         except ValueError:
             print("Invalid entry. Please enter a valid integer.")
 
+def p_delivery(current_total, new_value):
+    """
+    Calculates and returns the new running inventory total.
+    """
+    return current_total + new_value
+
+def calculate_tax(amount):
+    """
+    Calculates and returns 10% tax for a given delivery amount.
+    """
+    return amount * 0.10
+
 def main():
     total_inventory = 0
     failed_entries = 0
