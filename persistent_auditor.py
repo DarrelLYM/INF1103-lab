@@ -21,6 +21,7 @@ def load_inventory(file_path="inventory.txt"):
         print(f"Error loading inventory: {e}")
     return history
 
+
 def save_inventory(history, file_path="inventory.txt"):
     try:
         with open(file_path, "w") as f:
@@ -31,52 +32,19 @@ def save_inventory(history, file_path="inventory.txt"):
         print(f"Error saving inventory: {e}")
 
 
-# def combine_orders(history, product_name, qty):
-#     for i, (order_id, name, existing_qty) in enumerate(history):
-#         if name.strip().lower() == product_name.strip().lower():
-#             history[i] = (order_id, name, existing_qty + qty)
-#             print(f"\nCombined with existing order {order_id}:")
-#             print(f"{order_id}, {name}, {history[i][2]}")
-#             return history
+def combine_orders(history, product_name, qty):
+    for i, (order_id, name, existing_qty) in enumerate(history):
+        if name.strip().lower() == product_name.strip().lower():
+            history[i] = (order_id, name, existing_qty + qty)
+            print(f"\nCombined with existing order {order_id}:")
+            print(f"{order_id}, {name}, {history[i][2]}")
+            return history
 
-#     next_id = history[-1][0] + 1 if history else 1001
-#     history.append((next_id, product_name, qty))
-#     print("\nNew Order Added:")
-#     print(f"{next_id}, {product_name}, {qty}")
-#     return history
-
-def get_valid_input():
-    user_input = input("Enter stock quantity (or 'quit' to exit): ").strip()
-
-    if user_input.lower() == 'quit':
-        return 'quit'
-
-    try:
-        val = int(user_input)
-        if val < 0:
-            print("Invalid entry: Stock quantity cannot be negative.")
-            return 'invalid'
-        return val
-    except ValueError:
-        print("Invalid entry: Please enter a valid integer.")
-        return 'invalid'
-
-
-def p_delivery(current_total, new_value):
-    return current_total + new_value
-
-
-def calc_tax(amount):
-    return amount * 0.10
-
-
-def gen_report(total_units, total_tax, failed_attempts, history):
-    print("\n================ AUDIT REPORT ================")
-    print(f"Transaction History        : {history}")
-    print(f"Total Deliveries Processed : {total_units}")
-    print(f"Total Tax Calculated       : ${total_tax:.2f}")
-    print(f"Number of Failed Entries   : {failed_attempts}")
-    print("==============================================")
+    next_id = history[-1][0] + 1 if history else 1001
+    history.append((next_id, product_name, qty))
+    print("\nNew Order Added:")
+    print(f"{next_id}, {product_name}, {qty}")
+    return history
 
 
 def main():
@@ -87,27 +55,36 @@ def main():
     if history:
         for order in history:
             print(f"{order[0]}, {order[1]}, {order[2]}")
-    
-    # Determine next order ID (starts at 1001 if history is empty)
-    next_id = history[-1][0] + 1 if history else 1001
+    else:
+        print("(No existing orders)")
 
-    product_name = input("Enter Product Name: ").strip()
-    if product_name.lower() == 'quit':
-        save_inventory(history, file_path)
-        return
+    while True:
+        product_name = input("\nEnter Product Name (or 'quit' to exit): ").strip()
+        if product_name.lower() == 'quit':
+            save_inventory(history, file_path)
+            break
 
-    try:
-        qty = int(input("Enter Quantity: ").strip())
-    except ValueError:
-        print("Invalid quantity.")
-        return
+        if not product_name:
+            print("Product name cannot be empty.")
+            continue
 
-    # Add new order and save
-    history.append((next_id, product_name, qty))
-    print("\nNew Order Added:")
-    print(f"{next_id}, {product_name}, {qty}")
+        try:
+            qty_input = input("Enter Quantity: ").strip()
+            if qty_input.lower() == 'quit':
+                save_inventory(history, file_path)
+                break
+                
+            qty = int(qty_input)
+            if qty <= 0:
+                print("Quantity must be greater than 0.")
+                continue
+        except ValueError:
+            print("Invalid quantity. Please enter a valid integer.")
+            continue
 
-    save_inventory(history, file_path)
+        # Combine or append entry
+        history = combine_orders(history, product_name, qty)
+
 
 if __name__ == "__main__":
     main()
