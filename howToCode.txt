@@ -1,0 +1,73 @@
+---SETTING UP PROJECT CREATION---
+
+To generate NEW repository for NEW folder, type: git init
+
+To set name tied to your commit history globally, type: git config --global user.name "Your name"
+
+To set your email like ^, type: git config --global user.email "your@email.com"
+
+---SETTING UP PROJECT CREATION---
+.
+.
+.
+---BRANCHING AND MERGING---
+
+To list all branches in current repository, type: git branch
+
+To create new branch with specific name, type: git branch <branch name>
+
+To switch from working directory to specific branch, type: git switch <branch name>
+
+To create new branch AND switch to it, type: git switch -c <branch name> OR git checkout -b <branch name>
+
+To combine history and changes of specified branch to current active branch, type: git merge <branch name>
+
+To delete specific branch locally once its changes have been safely merged, type: git branch -d <branch name>
+
+---BRANCHING AND MERGING---
+.
+.
+.
+---SAVING CHANGES---
+
+To check status of files in repository, type: git status
+
+To add all folders/files into repo, type: git add .
+
+To add specific file, type: git add <filename> 
+
+To make commits to changes in code, type: git commit -m "enter note on changes"
+
+To make commits to all exisitng tracked files(not including newly created files), type: git commit -am "enter note on changes"
+
+To fix the last commit(add some staged changes you forgot), type: git commit --ammend -m "enter a note on changes"
+
+To fix the last commit wo adding note, type: git commit --ammend --no-edit
+
+---SAVING CHANGES---
+.
+.
+.
+---SHARING, COLLABORATION, INSPECTING HISTORY AND DIFFERENCES---
+
+To connect local repository to remote server link, type: git remote add <name> <url>
+
+To download the latest history of and tracking data from remote repository without modifying current files, type: git fetch
+
+To download the latest remote updates and instantly merge them with current active branch, type git pull
+
+To upload local branch commits to git remote repo (website), type: git push
+
+To check if changes have been made in terminal, type: git log
+
+To check exact line by line changes between current file and previous commit, type: git diff
+
+To check who made the last change to a file and what commit they did, type: git blame <filename>
+
+---SHARING, COLLABORATION, INSPECTING HISTORY AND DIFFERENCES---
+.
+.
+.
+---NON GITHUB COMMANDS---
+
+To change file to correct file when doing dockerfile thingy, type: cd "filename"
