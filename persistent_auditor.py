@@ -30,6 +30,26 @@ def save_inventory(history, file_path="inventory.txt"):
     except Exception as e:
         print(f"Error saving inventory: {e}")
 
+def combine_orders(history, product_name, qty):
+    """
+    Searches history for an existing product (case-insensitive).
+    If found, adds qty to the existing order.
+    If not found, creates a new order ID and adds the product.
+    """
+    for i, (order_id, name, existing_qty) in enumerate(history):
+        if name.strip().lower() == product_name.strip().lower():
+            # Update existing item in place
+            history[i] = (order_id, name, existing_qty + qty)
+            print(f"\nCombined with existing order {order_id}:")
+            print(f"{order_id}, {name}, {existing_qty + qty}")
+            return history
+
+    # If product does not exist, assign a new order ID
+    next_id = history[-1][0] + 1 if history else 1001
+    history.append((next_id, product_name, qty))
+    print("\nNew Order Added:")
+    print(f"{next_id}, {product_name}, {qty}")
+    return history
 
 def get_valid_input():
     user_input = input("Enter stock quantity (or 'quit' to exit): ").strip()
