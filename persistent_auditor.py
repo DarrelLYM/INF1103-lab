@@ -66,35 +66,34 @@ def gen_report(total_units, total_tax, failed_attempts, history):
 
 
 def main():
-    history = load_inventory("inventory.txt")
+    file_path = "inventory.txt"
+    history = load_inventory(file_path)
 
-    running_total = sum(history)
-    total_tax = sum(calc_tax(item) for item in history)
-    failed_attempts = 0
+    print("Current Orders:")
+    if history:
+        for order in history:
+            print(f"{order[0]}, {order[1]}, {order[2]}")
+    
+    # Determine next order ID (starts at 1001 if history is empty)
+    next_id = history[-1][0] + 1 if history else 1001
 
-    print(f"Initial Total: {running_total} units | Initial Tax: ${total_tax:.2f}")
+    product_name = input("Enter Product Name: ").strip()
+    if product_name.lower() == 'quit':
+        save_inventory(history, file_path)
+        return
 
-    while True:
-        result = get_valid_input()
+    try:
+        qty = int(input("Enter Quantity: ").strip())
+    except ValueError:
+        print("Invalid quantity.")
+        return
 
-        if result == 'quit':
-            save_inventory(history, "inventory.txt")
-            break
+    # Add new order and save
+    history.append((next_id, product_name, qty))
+    print("\nNew Order Added:")
+    print(f"{next_id}, {product_name}, {qty}")
 
-        if result == 'invalid':
-            failed_attempts += 1
-            continue
-
-        history.append(result)
-
-        running_total = p_delivery(running_total, result)
-        delivery_tax = calc_tax(result)
-        total_tax += delivery_tax
-
-        print(f"-> Added {result} units (Tax: ${delivery_tax:.2f}). Current Total: {running_total}")
-
-    gen_report(running_total, total_tax, failed_attempts, history)
-
+    save_inventory(history, file_path)
 
 if __name__ == "__main__":
     main()
