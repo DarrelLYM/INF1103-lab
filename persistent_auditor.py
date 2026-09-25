@@ -53,29 +53,36 @@ def calc_tax(amount):
     return amount * 0.10
 
 
-def gen_report(total_units, total_tax, failed_attempts):
-    
+def gen_report(total_units, total_tax, failed_attempts, history):
     print("\n================ AUDIT REPORT ================")
+    print(f"Transaction History        : {history}")
     print(f"Total Deliveries Processed : {total_units}")
     print(f"Total Tax Calculated       : ${total_tax:.2f}")
-    print(f"Number of Failed/Rejected Entries : {failed_attempts}")
+    print(f"Number of Failed Entries   : {failed_attempts}")
     print("==============================================")
 
 
 def main():
-    running_total = 0
-    total_tax = 0.0
+    history = load_inventory("inventory.txt")
+
+    running_total = sum(history)
+    total_tax = sum(calc_tax(item) for item in history)
     failed_attempts = 0
+
+    print(f"Initial Total: {running_total} units | Initial Tax: ${total_tax:.2f}")
 
     while True:
         result = get_valid_input()
 
         if result == 'quit':
+            save_inventory(history, "inventory.txt")
             break
 
         if result == 'invalid':
             failed_attempts += 1
             continue
+
+        history.append(result)
 
         running_total = p_delivery(running_total, result)
         delivery_tax = calc_tax(result)
@@ -83,7 +90,7 @@ def main():
 
         print(f"-> Added {result} units (Tax: ${delivery_tax:.2f}). Current Total: {running_total}")
 
-    gen_report(running_total, total_tax, failed_attempts)
+    gen_report(running_total, total_tax, failed_attempts, history)
 
 
 if __name__ == "__main__":
