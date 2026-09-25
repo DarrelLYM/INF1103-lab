@@ -3,18 +3,20 @@ import os
 def load_inventory(file_path="inventory.txt"):
     history = []
     if not os.path.exists(file_path):
-        return history  # Return empty history if file doesn't exist
+        print(f"'{file_path}' not found. Starting with clean inventory.")
+        return history
 
     try:
         with open(file_path, "r") as f:
             for line in f:
                 line = line.strip()
                 if line:
-                    # Parse transactions/orders into list
-                    history.append(float(line)) 
+                    history.append(int(line))
+        print(f"Successfully loaded {len(history)} past entries from {file_path}.")
     except Exception as e:
         print(f"Error loading inventory: {e}")
     return history
+
 
 def save_inventory(history, file_path="inventory.txt"):
     try:
@@ -25,13 +27,13 @@ def save_inventory(history, file_path="inventory.txt"):
     except Exception as e:
         print(f"Error saving inventory: {e}")
 
+
 def get_valid_input():
-    
     user_input = input("Enter stock quantity (or 'quit' to exit): ").strip()
-    
+
     if user_input.lower() == 'quit':
         return 'quit'
-    
+
     try:
         val = int(user_input)
         if val < 0:
@@ -44,12 +46,10 @@ def get_valid_input():
 
 
 def p_delivery(current_total, new_value):
-    
     return current_total + new_value
 
 
 def calc_tax(amount):
-    
     return amount * 0.10
 
 
