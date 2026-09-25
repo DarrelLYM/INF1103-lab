@@ -11,18 +11,21 @@ def load_inventory(file_path="inventory.txt"):
             for line in f:
                 line = line.strip()
                 if line:
-                    history.append(int(line))
-        print(f"Successfully loaded {len(history)} past entries from {file_path}.")
+                    parts = line.split(", ")
+                    if len(parts) == 3:
+                        order_id = int(parts[0])
+                        product = parts[1]
+                        qty = int(parts[2])
+                        history.append((order_id, product, qty))
     except Exception as e:
         print(f"Error loading inventory: {e}")
     return history
 
-
 def save_inventory(history, file_path="inventory.txt"):
     try:
         with open(file_path, "w") as f:
-            for item in history:
-                f.write(f"{item}\n")
+            for order in history:
+                f.write(f"{order[0]}, {order[1]}, {order[2]}\n")
         print(f"Order successfully saved to {file_path}")
     except Exception as e:
         print(f"Error saving inventory: {e}")
