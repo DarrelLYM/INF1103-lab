@@ -1,0 +1,253 @@
+commit 75d86e6295d23471ac8fc8b36d39cdfcda283823
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Thu Oct 29 20:20:17 2026 +0800
+
+    Lab 6: Completed OOP inventory management system
+    
+    Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+commit 5dc7f3a87eedf75327e8f9a3f41bc4d7decdfc04
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Thu Oct 29 20:20:17 2026 +0800
+
+    Lab 6: Refactored inventory system using OOP
+    
+    Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+commit 5db3afef6196b3928ea06df9986e96be490ddf49
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Thu Oct 29 20:20:17 2026 +0800
+
+    Lab 6: Created Inventory class
+    
+    Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+commit 61454c350aeaf1fdcb4ddede5b6fedf3b00e2bcc
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Thu Oct 29 20:20:16 2026 +0800
+
+    Lab 6: Created Product class
+    
+    Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+commit 2a9ab55da5486279803794acaacf6c917e5bb19d
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Wed Oct 7 21:53:26 2026 +0800
+
+    Fix Lab 5 folder structure
+
+commit 502560040b048d2de2bb0a5ea4cf1b04574019b4
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Wed Oct 7 21:52:17 2026 +0800
+
+    Add Lab 5 submission files
+
+commit 369da1a871f5092062431a1e45a9e0c8ba7523e8
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Fri Sep 25 20:21:15 2026 +0800
+
+    pushing submission files
+
+commit 5d0f975de6bfe9639d63153ce2a8a2beb6013944
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Fri Sep 25 20:16:46 2026 +0800
+
+    updated inventory.txt file
+
+commit 4de910fc67799e5e29ca45e49515f08284292405
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Fri Sep 25 20:12:14 2026 +0800
+
+    updating files for docker
+
+commit d2292bd9a0ca281a1f2f8063ca2af39358bbfffc
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Fri Sep 25 19:59:30 2026 +0800
+
+    add docker file
+
+commit 2c0936fbbf0a6b7e070bc5433a57c4499b7bfbd6
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Fri Sep 25 19:53:29 2026 +0800
+
+    whats going on bruh, moved log.txt to folder
+
+commit babd2a2278995bfe91e8d62900503cfef17f4757
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Fri Sep 25 19:52:22 2026 +0800
+
+    moved log.txt to folder
+
+commit ae1aa8b6a97f09dcf3eb3d6490a90c0a20c618d4
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Fri Sep 25 19:50:55 2026 +0800
+
+    added files into new folder
+
+commit 578f965ac2eb36b1426895a4f32746b30d624c92
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Fri Sep 25 17:56:02 2026 +0800
+
+    pre push
+
+commit ae306a6178c7039aceb65b75686fa6ff43dfcc04
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Fri Sep 25 17:53:27 2026 +0800
+
+    testing combine feature again
+
+commit 985ab63f29d23bb51d4a1b92edddf63ded54a3ee
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Fri Sep 25 17:51:05 2026 +0800
+
+    resetting inventory to 0
+
+commit bd3d12b858366c8b40e16a0b595eafd8811cf921
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Fri Sep 25 17:50:19 2026 +0800
+
+    removed the combine product feature
+
+commit 75f8d60e01aad01cdc34bb47f42c0b5994dafb05
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Fri Sep 25 17:26:00 2026 +0800
+
+    tweaking load invt
+
+commit fd56e176c9054be41cd81b5f90719fe9e220d3e0
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Fri Sep 25 17:23:27 2026 +0800
+
+    add new combine orders function test 2
+
+commit 6fada16a58c36df3143d8e6296859549abe4c228
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Fri Sep 25 17:16:42 2026 +0800
+
+    edited main
+
+commit 3892e94e67b2a92f1510b79e8c6bcc9f59e87fb0
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Fri Sep 25 17:16:08 2026 +0800
+
+    edited save inventopry
+
+commit 07cfe0dc871f6729acf8cbcf92d2fc923297bf0e
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Fri Sep 25 17:15:11 2026 +0800
+
+    edited load invventory
+
+commit e652b0d98b82f6834ccf53334b1a478fafb6cc0f
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Fri Sep 25 17:09:47 2026 +0800
+
+    updated main with new variables
+
+commit 97d8e577fe5e5c71679af05e88f6266789485ba8
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Fri Sep 25 17:08:29 2026 +0800
+
+    updated gen report
+
+commit 5ff990d49f5197e02e276ca55ab0c8107ee6dc60
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Fri Sep 25 17:04:59 2026 +0800
+
+    add save_invtry
+
+commit 2b191b131870ae4f82cbac07af823036b6cde855
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Fri Sep 25 16:39:30 2026 +0800
+
+    implement load_invtry func
+
+commit b1acd15f00aa294ae3f74278da4610ab72806a0f
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Sat Sep 19 16:24:28 2026 +0800
+
+    the zip folder too
+
+commit 197ad06fd8ecfb4cddce1763698687c7ef42d363
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Sat Sep 19 16:22:23 2026 +0800
+
+    adding the lab 3 submission files to git
+
+commit 3d2cefd991fe302eb9d829c445f216c58445c140
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Sat Sep 19 16:05:45 2026 +0800
+
+    fixed the end report tax calc display
+
+commit c40fc18f747cae106005f309f6964d18ab0c8b6e
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Sat Sep 19 16:02:57 2026 +0800
+
+    fixed calculate tax function
+
+commit 2e42990e770d59ec06faf1119f913914486cd809
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Sat Sep 19 15:57:29 2026 +0800
+
+    adding generate report
+
+commit 536129d9be7051fb46fcef9a7ce4e7ac8ef3ec9c
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Sat Sep 19 15:54:54 2026 +0800
+
+    checking git log
+
+commit 71896e57df99c44a8895d04c528729fa9ce4145e
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Sat Sep 19 15:43:47 2026 +0800
+
+    checking if changes saved success
+
+commit d4fc8496ed6dacddda705e5316afb16c5a8b2222
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Fri Sep 18 16:54:13 2026 +0800
+
+    Add modular_auditor script
+
+commit 7d684f4c2df2614b20e4733d9d505f5c686ba0a0
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Fri Sep 18 16:31:20 2026 +0800
+
+    Add modular_auditor.py to git repo
+
+commit df08809c6c5dc39087734c3a2b6b0a58c23d1001
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Sat Sep 12 11:10:57 2026 +0800
+
+    Complete Docker setup
+
+commit 4dcb7fe067e2f6904309052e26c96ff87b03c55f
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Fri Sep 11 17:21:22 2026 +0800
+
+    initial
+
+commit 8336d0152b90e9fa1f4c0757ac5d59cd0a834011
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Fri Sep 4 17:29:45 2026 +0800
+
+    First Post
+
+commit 5fba056264ccd0518b3d91b4f23c02fcadf6949d
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Fri Sep 4 17:27:20 2026 +0800
+
+    First Post
+
+commit 1663da6470b4612ddab5bc9c54b84f39cb92e21c
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Fri Sep 4 17:22:00 2026 +0800
+
+    First Post
+
+commit be58109e74cefc334b265fa522a8f16c6d66afda
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Fri Sep 4 17:09:49 2026 +0800
+
+    First Post
