@@ -28,5 +28,11 @@
         "name": "Monitor",
         "price": 299.99,
         "stock": 10
+    },
+    {
+        "id": "200",
+        "name": "pearls",
+        "price": 30.0,
+        "stock": 10
     }
 ]
