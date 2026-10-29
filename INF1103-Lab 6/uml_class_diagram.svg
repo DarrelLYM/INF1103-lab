@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="690" viewBox="0 0 1300 690" font-family="Consolas, 'Courier New', monospace" font-size="14">
+  <defs>
+    <marker id="open" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse">
+      <path d="M1,1 L11,6 L1,11" fill="none" stroke="#222" stroke-width="1.5"/>
+    </marker>
+    <marker id="diamond" viewBox="0 0 20 12" refX="19" refY="6" markerWidth="20" markerHeight="12" orient="auto-start-reverse">
+      <path d="M1,6 L10,1 L19,6 L10,11 Z" fill="#fff" stroke="#222" stroke-width="1.5"/>
+    </marker>
+  </defs>
+  <rect width="1300" height="690" fill="#fff"/>
+
+  <text x="20" y="34" font-size="20" font-weight="bold" font-family="Segoe UI, Arial, sans-serif">INF1103 Lab 6 – UML Class Diagram</text>
+  <text x="20" y="58" font-size="13" font-family="Segoe UI, Arial, sans-serif" fill="#555">Inventory Management System (OOP)</text>
+  <text x="20" y="80" font-size="13" font-family="Segoe UI, Arial, sans-serif" fill="#555">−  private    +  public</text>
+
+  <!-- inventory_manager (main program module) -->
+  <g>
+    <rect x="450" y="20" width="420" height="180" fill="#f3f6fb" stroke="#222" stroke-width="1.5"/>
+    <text x="660" y="40" text-anchor="middle" font-style="italic">«module»</text>
+    <text x="660" y="60" text-anchor="middle" font-weight="bold">inventory_manager (Main Program)</text>
+    <line x1="450" y1="70" x2="870" y2="70" stroke="#222"/>
+    <text x="460" y="92">+ main() : void</text>
+    <text x="460" y="112">+ add_product(inventory) : void</text>
+    <text x="460" y="132">+ update_stock(inventory) : void</text>
+    <text x="460" y="152">+ search_product(inventory) : void</text>
+    <text x="460" y="172">+ load_inventory(inventory, file_handler)</text>
+    <text x="460" y="192">+ save_inventory(inventory, file_handler)</text>
+  </g>
+
+  <!-- Product -->
+  <g>
+    <rect x="20" y="300" width="380" height="290" fill="#fff" stroke="#222" stroke-width="1.5"/>
+    <text x="210" y="320" text-anchor="middle" font-weight="bold">Product</text>
+    <line x1="20" y1="330" x2="400" y2="330" stroke="#222"/>
+    <text x="30" y="352">- __product_id : str</text>
+    <text x="30" y="372">- __name : str</text>
+    <text x="30" y="392">- __price : float</text>
+    <text x="30" y="412">- __stock : int</text>
+    <line x1="20" y1="420" x2="400" y2="420" stroke="#222"/>
+    <text x="30" y="442">+ __init__(product_id, name, price, stock)</text>
+    <text x="30" y="462">+ get_product_id() : str</text>
+    <text x="30" y="482">+ get_name() : str</text>
+    <text x="30" y="502">+ get_price() : float</text>
+    <text x="30" y="522">+ get_stock() : int</text>
+    <text x="30" y="542">+ update_stock(quantity : int) : void</text>
+    <text x="30" y="562">+ display_information() : void</text>
+  </g>
+
+  <!-- Inventory -->
+  <g>
+    <rect x="450" y="300" width="420" height="170" fill="#fff" stroke="#222" stroke-width="1.5"/>
+    <text x="660" y="320" text-anchor="middle" font-weight="bold">Inventory</text>
+    <line x1="450" y1="330" x2="870" y2="330" stroke="#222"/>
+    <text x="460" y="352">- __products : list[Product]</text>
+    <line x1="450" y1="360" x2="870" y2="360" stroke="#222"/>
+    <text x="460" y="382">+ __init__()</text>
+    <text x="460" y="402">+ add_product(product : Product) : bool</text>
+    <text x="460" y="422">+ search_product(product_id : str) : Product</text>
+    <text x="460" y="442">+ get_all_products() : list[Product]</text>
+    <text x="460" y="462">+ display_all() : void</text>
+  </g>
+
+  <!-- FileHandler -->
+  <g>
+    <rect x="920" y="300" width="360" height="170" fill="#fff" stroke="#222" stroke-width="1.5"/>
+    <text x="1100" y="320" text-anchor="middle" font-weight="bold">FileHandler</text>
+    <line x1="920" y1="330" x2="1280" y2="330" stroke="#222"/>
+    <text x="930" y="352">- __filename : str</text>
+    <line x1="920" y1="360" x2="1280" y2="360" stroke="#222"/>
+    <text x="930" y="382">+ __init__(filename : str)</text>
+    <text x="930" y="402">+ file_exists() : bool</text>
+    <text x="930" y="422">+ load(inventory : Inventory) : void</text>
+    <text x="930" y="442">+ save(inventory : Inventory) : void</text>
+  </g>
+
+  <g fill="none" stroke="#222" stroke-width="1.5">
+    <!-- Inventory aggregates Products -->
+    <line x1="400" y1="395" x2="450" y2="395" marker-end="url(#diamond)"/>
+    <!-- FileHandler uses Inventory -->
+    <line x1="920" y1="415" x2="870" y2="415" stroke-dasharray="6 4" marker-end="url(#open)"/>
+    <!-- FileHandler creates Products -->
+    <polyline points="1100,470 1100,640 210,640 210,590" stroke-dasharray="6 4" marker-end="url(#open)"/>
+    <!-- main uses Inventory -->
+    <line x1="660" y1="200" x2="660" y2="300" stroke-dasharray="6 4" marker-end="url(#open)"/>
+    <!-- main uses FileHandler -->
+    <polyline points="870,110 1100,110 1100,300" stroke-dasharray="6 4" marker-end="url(#open)"/>
+    <!-- main creates Products -->
+    <polyline points="450,110 210,110 210,300" stroke-dasharray="6 4" marker-end="url(#open)"/>
+  </g>
+
+  <g font-size="12" font-family="Segoe UI, Arial, sans-serif" fill="#333">
+    <text x="405" y="387">0..*</text>
+    <text x="436" y="387">1</text>
+    <text x="425" y="414" text-anchor="middle">contains</text>
+    <text x="895" y="408" text-anchor="middle">uses</text>
+    <text x="655" y="634" text-anchor="middle">«creates» (when loading)</text>
+    <text x="668" y="255">«uses»</text>
+    <text x="985" y="104">«uses»</text>
+    <text x="330" y="104" text-anchor="middle">«creates»</text>
+  </g>
+</svg>
