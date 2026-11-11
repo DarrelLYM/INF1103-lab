@@ -1,69 +1,67 @@
-# INF1103 Lab 8 – Notes & Reflection
+# INF1103 Lab 8 – Reflection
 
-The "Predict first" answers, the LSP "Diagnose" answer and the Section 6.3 / 7.3 explanations are in **Lab 8 Predict First Notes.docx**.
+My Predict First answers, the LSP diagnose answer and my answers for 6.3 and 7.3 are in *Lab 8 Predict First Notes.docx*.
 
-## Design summary
+## Design
 
-| Relationship | Classes | How it shows in the code | UML |
+| Relationship | Classes | In my code | UML |
 |---|---|---|---|
-| **Association** (knows-about) | `Product` → `Supplier` | The Supplier is created first and passed into `Product.__init__(..., supplier: Supplier)`. Product stores the reference (`self.__supplier: Supplier`). Neither creates nor owns the other. | `Supplier 1 —— 0..* Product` |
-| **Aggregation** (has-a, parts independent) | `Inventory` ◇— `Product` | `self.__products: list[Product]`. Products are created outside and passed to `add_product()`. `remove_product()` returns the same object, so it can be added to another Inventory. `clear()` only drops references. | `Inventory 0..1 ◇—— 0..* Product` |
-| **Composition** (owns, lifecycle tied) | `Order` ◆— `OrderLine` | Only `Order.add_order_line(product, quantity)` creates `OrderLine` objects. `order_lines` is returned as a read-only tuple, so lines cannot be added or moved from outside. `remove_order_line()` and `cancel()` discard them. | `Order 1 ◆—— 0..* OrderLine` |
-| **Association** | `OrderLine` → `Product` | OrderLine refers to a Product but does not own it. The same Product can be in many orders and in an Inventory. | `OrderLine 0..* —— 1 Product` |
-| **Inheritance** | `PhysicalProduct`, `DigitalProduct` → `Product` | From Lab 7, now passing `supplier` up through `super().__init__()`. | hollow triangle |
-| **Interface** | `PhysicalProduct` ⋯▷ `CanBeShipped` | From Lab 7. | dashed, hollow triangle |
+| Association | Product → Supplier | The supplier is created first and passed into the Product constructor (`supplier: Supplier`). The product keeps a reference to it but neither one owns the other. | `Supplier 1 —— 0..* Product` |
+| Aggregation | Inventory ◇— Product | `self.__products: list[Product]`. Products are made outside and added with `add_product()`. `remove_product()` gives back the same object so it can go into another inventory, and `clear()` only drops the references. | `Inventory 0..1 ◇—— 0..* Product` |
+| Composition | Order ◆— OrderLine | Only `Order.add_order_line(product, quantity)` creates order lines. `order_lines` is returned as a tuple so nothing outside can add or move lines. `remove_order_line()` and `cancel()` get rid of them. | `Order 1 ◆—— 0..* OrderLine` |
+| Association | OrderLine → Product | An order line refers to a product but does not own it, so the same product can be in many orders and in an inventory. | `OrderLine 0..* —— 1 Product` |
+| Inheritance | PhysicalProduct, DigitalProduct → Product | Same as Lab 7, but the supplier is now passed up with `super().__init__()`. | hollow triangle |
+| Interface | PhysicalProduct ⋯▷ CanBeShipped | Same as Lab 7. | dashed line, hollow triangle |
 
-**Persistence:** `inventory.json` now has a `suppliers` list and a `products` list. Each product only saves its `supplier_id` (the Supplier is a separate object, not part of the product). On loading, `FileHandler` builds each Supplier once and links every product back to that **same** Supplier object.
+`inventory.json` now has a list of suppliers and a list of products. Each product only saves its `supplier_id`, since the supplier is a separate object and not part of the product. When loading, `FileHandler` creates each supplier once and links every product back to that same supplier object.
 
-**Menu integration:** `inventory_manager.py` now asks for a supplier when adding a product and has new options for *Remove Product*, *Display Suppliers*, *Add Supplier* and *Create Order*.
+The menu now asks for a supplier when adding a product, and has new options to remove a product, show suppliers, add a supplier and create an order.
 
-**Docker:** the base image moved from `python:3.9-slim` to `python:3.11-slim`, because type hints like `Product | None` need Python 3.10 or newer.
+I changed the Docker image from `python:3.9-slim` to `python:3.11-slim` because type hints like `Product | None` need Python 3.10 or newer.
 
-## Type hints (Section 5)
+## Type hints
 
-Every attribute, parameter and return value has a type hint, chosen from the design first and then written in code. Examples:
+I decided the types in the UML first and then added them to the code:
 
-- Object references: `supplier: Supplier`, `product: Product`
-- Collections: `list[Product]`, `list[OrderLine]` (and `tuple[OrderLine, ...]` for the read-only view)
-- Optional results: `find_product(product_id: str) -> Product | None`, `remove_product(product_id: str) -> Product | None`
-- No result: `add_order_line(...) -> None`, `display_information() -> None`
-- `Any` is not used anywhere.
+- References to other objects: `supplier: Supplier`, `product: Product`
+- Collections: `list[Product]`, `list[OrderLine]`
+- Methods that might not find anything: `find_product(product_id: str) -> Product | None`
+- Methods that return nothing: `add_order_line(...) -> None`
 
-`from __future__ import annotations` is used so the hints are not evaluated while the module loads. `TestTypeHints` in `test_lab8.py` reads the hints with `typing.get_type_hints()` and checks they match the UML.
+I didn't use `Any` anywhere. `TestTypeHints` in `test_lab8.py` reads the hints and checks that they match the diagram. In the UML I wrote the types in a way that isn't Python-specific, for example `Product [0..*]` for a collection and `Product [0..1]` for a product or nothing.
 
-In the UML diagram the types are written in a language-independent way: `Product [0..*]` for a collection and `Product [0..1]` for "a Product or nothing".
+## Testing
 
-## Testing (Section 9)
+`python lab8_demo.py` runs through Sections 2, 3, 4, 6 and 7 and prints the results I used to check my predictions. `python -m unittest -v test_lab8` runs 21 tests covering association, aggregation, composition, type hints, LSP, polymorphism and saving/loading.
 
-- `python lab8_demo.py`: walks through Sections 2, 3, 4, 6 and 7 and prints the results used to check each Predict First answer.
-- `python -m unittest -v test_lab8`: 21 tests covering association, aggregation, composition, type hints, LSP, polymorphism and JSON persistence.
+## AI use
 
-## AI use (Section 8)
+I used AI to help with the UML diagram and checked each relationship against Section 1. I kept the Supplier link as an association, since a product isn't made up of suppliers. I changed the Inventory end of the aggregation from `0..*` to `0..1`, because in my design a product is only in one inventory at a time and gets moved by removing it from one and adding it to another.
 
-I used an AI assistant to help draft the UML diagram and checked every relationship it chose against Section 1.
+I also used AI to explain some concepts I wasn't sure about in this lab, like the difference between aggregation and composition and why a subclass can break LSP.
 
-- **Accepted:** `supplier: Supplier` drawn as a plain **association** (solid line, arrow towards Supplier) and not as aggregation, because a Product is not a whole made of Suppliers, and `OrderLine → Product` also as an association, because an OrderLine refers to a Product but does not own it.
-- **Changed:** the multiplicity at the Inventory end of the aggregation. The draft had `0..*` (a product can be shared by many inventories). I changed it to `0..1` because in my design a product is in at most one inventory at a time and is *moved* by removing it from one and adding it to another.
+## Reflection
 
-## Optional reflection (Section 10)
+My first prediction was wrong. I thought `del supplier` would delete the Supplier object and the products would crash when showing supplier details. It turns out `del` only removes the variable name. The products still had their own references, so the supplier kept existing. The others matched what I expected.
 
-**Can an object reference exist without being aggregation or composition?**
-Yes. `Product.supplier` is a stored reference, but a Product is not made of Suppliers, so it is only an association. The same is true for `OrderLine.product`.
+A stored reference doesn't automatically mean aggregation or composition. `Product.supplier` is a reference, but a product isn't made of suppliers, so it's only an association. `OrderLine.product` is the same.
 
-**Why can a Product be removed from an Inventory without being destroyed, while an OrderLine belongs to an Order?**
-A Product is created outside the Inventory and has a meaning by itself (it can be sold, ordered, or stored somewhere else). An OrderLine only means something as part of its Order ("2 laptops *in order ORD001*"). If it were moved to another Order, the first order's total would silently change, so the Order creates it and it ends with the Order.
+A product can be taken out of an inventory without being destroyed because it is created outside the inventory and still means something by itself. It can be sold, ordered or stored somewhere else. An order line only makes sense inside its order ("2 laptops in order ORD001"). If it got moved to another order, the first order's total would change without anyone noticing, so it makes sense for the order to create it and get rid of it.
 
-**Why should Inventory store Product references rather than separate collections for each subclass?**
-One `list[Product]` lets the Inventory work with any current or future subclass without changing. Separate lists would need a new list, new methods and new `if` checks each time a product type is added, which breaks the Open/Closed Principle.
+Keeping one `list[Product]` in the inventory means it works with any type of product, including new ones added later. Having separate lists for physical and digital products would mean adding a new list, new methods and more `if` checks every time a new type is added.
 
-**How do type hints communicate design decisions?**
-They show at a glance what an attribute holds (`Supplier`, not a supplier name string), what a collection contains, and when a method may return nothing (`Product | None`), so the caller knows to check for `None`. The IDE can also warn about wrong types before the program runs.
+Type hints make it clear what each attribute holds (a `Supplier` object, not just a supplier name), what is inside a list, and when a method can return `None`, so whoever calls it knows to check. VS Code also picks up some mistakes before the code is run.
 
-**Would the UML design still make sense in Java or C#?**
-Yes. The diagram uses UML types and multiplicities (`Product [0..*]`, `Product [0..1]`) rather than Python syntax. In Java, `list[Product]` would become `List<Product>` and `Product | None` would be a nullable `Product` or `Optional<Product>`, but the classes and relationships stay the same.
+The UML would still work for Java or C#. `list[Product]` would just become `List<Product>` and `Product | None` would be a nullable `Product`, but the classes and relationships are the same.
 
-**Can a subclass inherit from Product but still violate LSP?**
-Yes. The `DigitalProduct.update_stock()` that raises `NotImplementedError` in the Diagnose task inherits from Product but breaks the promise that `update_stock()` works for every Product, so code written for Product crashes.
+A subclass can inherit from Product and still break LSP. The `DigitalProduct.update_stock()` in the diagnose task that raises `NotImplementedError` is an example. It inherits from Product but breaks code that expects every product to accept a stock update.
 
-**Where could the group project use these relationships?** *(edit this to match your project)*
-A main application object that creates its own manager objects and is the only thing that uses them would be **composition**, because the managers are created by, and end with, the application. Objects that are passed in from outside and only used (for example a shared configuration or data object) would be **association**.
+## Group project
+
+Our group project is a workplace safety incident triage system. A supervisor logs an incident on a construction site, AI gathers supporting evidence, and fixed rules decide how serious it is before it is saved for review.
+
+- **Association:** Each AI enrichment step (like the hazard flag step and the review step) is given a Gemini client when it is created. The step uses the client but doesn't create or own it, and the same client can be shared between several steps. That fits association.
+- **Aggregation:** A photo can be attached to an incident. The photo is created on its own from the uploaded file and then attached, so it exists separately from the incident. Aggregation fits better than composition here.
+- **Composition:** The version history of an incident fits composition best. Each snapshot is created by the incident when it is edited, only means something for that one incident, and should be deleted together with it. It should never be moved to a different incident.
+
+If I had to pick one to use more in the project, it would be composition for the incident history. It makes it clear that only the incident is allowed to create and manage its own versions, which stops other parts of the program from changing an incident's past records.
