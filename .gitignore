@@ -12,3 +12,6 @@ venv/
 # IDE settings
 .vscode/
 .idea/
+
+# Group project repos (kept in their own repositories)
+INF1103_Project_Folders/
