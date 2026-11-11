@@ -46,5 +46,13 @@
         "stock": 200,
         "type": "digital",
         "download_size": 12.5
+    },
+    {
+        "id": "1010",
+        "name": "chair",
+        "price": 2000.0,
+        "stock": 10,
+        "type": "physical",
+        "weight": 10.0
     }
 ]
