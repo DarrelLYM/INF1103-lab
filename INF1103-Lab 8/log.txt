@@ -9,87 +9,60 @@ Author: your_email@example.com <darrellimym@gmail.com>
 Date:   Fri Oct 30 16:16:34 2026 +0800
 
     Lab 7: Add screenshots and submission zip
-    
-    Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
 
 commit f5d0fd559dfd04dafff44644657fec00b2706af1
 Author: your_email@example.com <darrellimym@gmail.com>
 Date:   Fri Oct 30 16:08:58 2026 +0800
 
     Lab 7: Add git log
-    
-    Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
 
 commit 3faaa2495795e3e0e76934a2033fde0d510ce71f
 Author: your_email@example.com <darrellimym@gmail.com>
 Date:   Fri Oct 30 16:08:50 2026 +0800
 
     Lab 7: Add inheritance, abstract Product, CanBeShipped interface and typed JSON persistence
-    
-    - PhysicalProduct (weight) and DigitalProduct (download_size) extend Product via super()
-    - display_information()/to_dict() overridden, reusing parent implementation
-    - Product is now an ABC with abstract get_fulfilment_info()
-    - CanBeShipped interface implemented by PhysicalProduct (calculate_shipping_cost)
-    - FileHandler saves/loads a product type identifier
-    - Unit tests, updated UML class diagram, reflection and .gitignore
-    
-    Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
 
 commit 175804d848a36fa2f2726560b5b0778c1587e3ec
 Author: your_email@example.com <darrellimym@gmail.com>
 Date:   Thu Oct 29 21:04:58 2026 +0800
 
     Lab 5: Rebuild submission zip with all required files
-    
-    Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
 
 commit 3a19f98386ad85ee33cf0674290899a98f89acf7
 Author: your_email@example.com <darrellimym@gmail.com>
 Date:   Thu Oct 29 21:02:22 2026 +0800
 
     Lab 6: Add screenshots, updated inventory and submission zip
-    
-    Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
 
 commit efbc7011330134f42ac391d5c6765b151d36e911
 Author: your_email@example.com <darrellimym@gmail.com>
 Date:   Thu Oct 29 20:20:17 2026 +0800
 
     Lab 6: Add git log
-    
-    Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
 
 commit 75d86e6295d23471ac8fc8b36d39cdfcda283823
 Author: your_email@example.com <darrellimym@gmail.com>
 Date:   Thu Oct 29 20:20:17 2026 +0800
 
     Lab 6: Completed OOP inventory management system
-    
-    Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
 
 commit 5dc7f3a87eedf75327e8f9a3f41bc4d7decdfc04
 Author: your_email@example.com <darrellimym@gmail.com>
 Date:   Thu Oct 29 20:20:17 2026 +0800
 
     Lab 6: Refactored inventory system using OOP
-    
-    Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
 
 commit 5db3afef6196b3928ea06df9986e96be490ddf49
 Author: your_email@example.com <darrellimym@gmail.com>
 Date:   Thu Oct 29 20:20:17 2026 +0800
 
     Lab 6: Created Inventory class
-    
-    Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
 
 commit 61454c350aeaf1fdcb4ddede5b6fedf3b00e2bcc
 Author: your_email@example.com <darrellimym@gmail.com>
 Date:   Thu Oct 29 20:20:16 2026 +0800
 
     Lab 6: Created Product class
-    
-    Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
 
 commit 2a9ab55da5486279803794acaacf6c917e5bb19d
 Author: your_email@example.com <darrellimym@gmail.com>
@@ -312,3 +285,4 @@ Author: your_email@example.com <darrellimym@gmail.com>
 Date:   Fri Sep 4 17:09:49 2026 +0800
 
     First Post
+
