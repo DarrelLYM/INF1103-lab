@@ -1,3 +1,15 @@
+commit 64094e4dfea83fb5c2818f1d7f6c477f73cd2d4c
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Fri Nov 13 15:06:24 2026 +0800
+
+    Lab 9: Update reflection and predict first notes
+
+commit a9c6219902d9b99413551a83d2903dbf7c3ec7b2
+Author: your_email@example.com <darrellimym@gmail.com>
+Date:   Fri Nov 13 15:03:28 2026 +0800
+
+    Lab 9: Update git log and submission zip
+
 commit 07142d5db8e61911bd5659be1085a6c1bedc5e12
 Author: your_email@example.com <darrellimym@gmail.com>
 Date:   Fri Nov 13 15:03:16 2026 +0800
