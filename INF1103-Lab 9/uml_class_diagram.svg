@@ -1,0 +1,238 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1500" viewBox="0 0 1500 1500" font-family="Consolas, 'Courier New', monospace" font-size="14" xml:space="preserve">
+  <defs>
+    <marker id="open" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse">
+      <path d="M1,1 L11,6 L1,11" fill="none" stroke="#222" stroke-width="1.5"/>
+    </marker>
+    <marker id="diamond" viewBox="0 0 22 12" refX="21" refY="6" markerWidth="22" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto">
+      <path d="M1,6 L11,1 L21,6 L11,11 Z" fill="#fff" stroke="#222" stroke-width="1.5"/>
+    </marker>
+    <marker id="filled" viewBox="0 0 22 12" refX="21" refY="6" markerWidth="22" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto">
+      <path d="M1,6 L11,1 L21,6 L11,11 Z" fill="#222" stroke="#222" stroke-width="1.5"/>
+    </marker>
+    <marker id="triangle" viewBox="0 0 20 20" refX="19" refY="10" markerWidth="20" markerHeight="20" markerUnits="userSpaceOnUse" orient="auto">
+      <path d="M1,1 L19,10 L1,19 Z" fill="#fff" stroke="#222" stroke-width="1.5"/>
+    </marker>
+  </defs>
+  <rect width="1500" height="1500" fill="#fff"/>
+  <text x="20" y="34" font-size="20" font-weight="bold" font-family="Segoe UI, Arial, sans-serif">INF1103 Lab 9 – UML Class Diagram</text>
+  <text x="20" y="56" font-size="13" font-family="Segoe UI, Arial, sans-serif" fill="#555">Inventory Management System (Strategy and Factory patterns, validation rules shown as {constraints})</text>
+  <text x="20" y="76" font-size="13" font-family="Segoe UI, Arial, sans-serif" fill="#555">Types are language-independent: "Product [0..*]" = a collection of Product, "Product [0..1]" = a Product or nothing (None).</text>
+  <g><rect x="520" y="110" width="470" height="320" fill="#fffdf2" stroke="#222" stroke-width="1.5"/>
+  <rect x="520" y="110" width="470" height="48" fill="#f3e9c6" stroke="#222" stroke-width="1.5"/>
+  <text x="755.0" y="131" text-anchor="middle" font-size="12">«abstract»</text>
+  <text x="755.0" y="149" text-anchor="middle" font-weight="bold" font-size="15" font-style="italic">Product</text>
+  <line x1="520" y1="158" x2="990" y2="158" stroke="#222"/>
+  <text x="530" y="181">-product_id: str</text>
+  <text x="530" y="201">-name: str</text>
+  <text x="530" y="221">-price: float {&gt; 0}</text>
+  <text x="530" y="241">-stock_quantity: int {&gt;= 0}</text>
+  <text x="530" y="261">-supplier: Supplier</text>
+  <text x="530" y="281">(each attribute has a read-only getter)</text>
+  <line x1="520" y1="294" x2="990" y2="294" stroke="#222"/>
+  <text x="530" y="317">+Product(product_id: str, name: str, price: float,</text>
+  <text x="530" y="337">         stock_quantity: int, supplier: Supplier)</text>
+  <text x="530" y="357">+update_stock(quantity: int): None</text>
+  <text x="530" y="377">+display_information(): None</text>
+  <text x="530" y="397">+to_dict(): dict</text>
+  <text x="530" y="417" font-style="italic">+get_fulfilment_info(): str {abstract}</text>
+  </g>
+  <g><rect x="40" y="130" width="370" height="204" fill="#fffdf2" stroke="#222" stroke-width="1.5"/>
+  <rect x="40" y="130" width="370" height="32" fill="#f3e9c6" stroke="#222" stroke-width="1.5"/>
+  <text x="225.0" y="151" text-anchor="middle" font-weight="bold" font-size="15">Supplier</text>
+  <line x1="40" y1="162" x2="410" y2="162" stroke="#222"/>
+  <text x="50" y="185">-supplier_id: str</text>
+  <text x="50" y="205">-name: str</text>
+  <text x="50" y="225">-contact_email: str</text>
+  <line x1="40" y1="238" x2="410" y2="238" stroke="#222"/>
+  <text x="50" y="261">+Supplier(supplier_id: str, name: str,</text>
+  <text x="50" y="281">          contact_email: str)</text>
+  <text x="50" y="301">+display_information(): None</text>
+  <text x="50" y="321">+to_dict(): dict</text>
+  </g>
+  <g><rect x="1090" y="110" width="390" height="224" fill="#fffdf2" stroke="#222" stroke-width="1.5"/>
+  <rect x="1090" y="110" width="390" height="32" fill="#f3e9c6" stroke="#222" stroke-width="1.5"/>
+  <text x="1285.0" y="131" text-anchor="middle" font-weight="bold" font-size="15">Inventory</text>
+  <line x1="1090" y1="142" x2="1480" y2="142" stroke="#222"/>
+  <text x="1100" y="165">-name: str</text>
+  <text x="1100" y="185">-products: Product [0..*]</text>
+  <line x1="1090" y1="198" x2="1480" y2="198" stroke="#222"/>
+  <text x="1100" y="221">+add_product(product: Product): bool</text>
+  <text x="1100" y="241">+remove_product(product_id: str): Product [0..1]</text>
+  <text x="1100" y="261">+find_product(product_id: str): Product [0..1]</text>
+  <text x="1100" y="281">+clear(): None</text>
+  <text x="1100" y="301">+count(): int</text>
+  <text x="1100" y="321">+display_all_products(): None</text>
+  </g>
+  <g><rect x="1090" y="470" width="390" height="164" fill="#fffdf2" stroke="#222" stroke-width="1.5"/>
+  <rect x="1090" y="470" width="390" height="32" fill="#f3e9c6" stroke="#222" stroke-width="1.5"/>
+  <text x="1285.0" y="491" text-anchor="middle" font-weight="bold" font-size="15">OrderLine</text>
+  <line x1="1090" y1="502" x2="1480" y2="502" stroke="#222"/>
+  <text x="1100" y="525">-product: Product</text>
+  <text x="1100" y="545">-quantity: int {&gt; 0}</text>
+  <line x1="1090" y1="558" x2="1480" y2="558" stroke="#222"/>
+  <text x="1100" y="581">+OrderLine(product: Product, quantity: int)</text>
+  <text x="1100" y="601">+calculate_subtotal(): float</text>
+  <text x="1100" y="621">+display_information(): None</text>
+  </g>
+  <g><rect x="1040" y="790" width="450" height="306" fill="#fffdf2" stroke="#222" stroke-width="1.5"/>
+  <rect x="1040" y="790" width="450" height="32" fill="#f3e9c6" stroke="#222" stroke-width="1.5"/>
+  <text x="1265.0" y="811" text-anchor="middle" font-weight="bold" font-size="15">Order</text>
+  <line x1="1040" y1="822" x2="1490" y2="822" stroke="#222"/>
+  <text x="1050" y="845">-order_id: str</text>
+  <text x="1050" y="865">-order_lines: OrderLine [0..*]</text>
+  <text x="1050" y="885">-discount: DiscountStrategy</text>
+  <line x1="1040" y1="898" x2="1490" y2="898" stroke="#222"/>
+  <text x="1050.0" y="921">+Order(order_id: str, discount: DiscountStrategy</text>
+  <text x="1096.2" y="941">= NoDiscount())</text>
+  <text x="1050.0" y="961">+add_order_line(product: Product, quantity: int): None</text>
+  <text x="1050.0" y="981">+remove_order_line(product_id: str): bool</text>
+  <text x="1050.0" y="1001">+cancel(): None</text>
+  <text x="1050.0" y="1021">+set_discount(discount: DiscountStrategy): None</text>
+  <text x="1050.0" y="1041">+calculate_subtotal(): float</text>
+  <text x="1050.0" y="1061">+calculate_total(): float</text>
+  <text x="1050.0" y="1081">+display_order(): None</text>
+  </g>
+  <g><rect x="400" y="610" width="340" height="204" fill="#fffdf2" stroke="#222" stroke-width="1.5"/>
+  <rect x="400" y="610" width="340" height="32" fill="#f3e9c6" stroke="#222" stroke-width="1.5"/>
+  <text x="570.0" y="631" text-anchor="middle" font-weight="bold" font-size="15">PhysicalProduct</text>
+  <line x1="400" y1="642" x2="740" y2="642" stroke="#222"/>
+  <text x="410" y="665">-weight: float</text>
+  <text x="410" y="685">+BASE_SHIPPING_FEE: float = 5.00</text>
+  <text x="410" y="705">+RATE_PER_KG: float = 2.00</text>
+  <line x1="400" y1="718" x2="740" y2="718" stroke="#222"/>
+  <text x="410" y="741">+display_information(): None</text>
+  <text x="410" y="761">+to_dict(): dict</text>
+  <text x="410" y="781">+get_fulfilment_info(): str</text>
+  <text x="410" y="801">+calculate_shipping_cost(): float</text>
+  </g>
+  <g><rect x="780" y="610" width="280" height="144" fill="#fffdf2" stroke="#222" stroke-width="1.5"/>
+  <rect x="780" y="610" width="280" height="32" fill="#f3e9c6" stroke="#222" stroke-width="1.5"/>
+  <text x="920.0" y="631" text-anchor="middle" font-weight="bold" font-size="15">DigitalProduct</text>
+  <line x1="780" y1="642" x2="1060" y2="642" stroke="#222"/>
+  <text x="790" y="665">-download_size: float</text>
+  <line x1="780" y1="678" x2="1060" y2="678" stroke="#222"/>
+  <text x="790" y="701">+display_information(): None</text>
+  <text x="790" y="721">+to_dict(): dict</text>
+  <text x="790" y="741">+get_fulfilment_info(): str</text>
+  </g>
+  <g><rect x="40" y="640" width="300" height="100" fill="#fffdf2" stroke="#222" stroke-width="1.5"/>
+  <rect x="40" y="640" width="300" height="48" fill="#f3e9c6" stroke="#222" stroke-width="1.5"/>
+  <text x="190.0" y="661" text-anchor="middle" font-size="12">«interface»</text>
+  <text x="190.0" y="679" text-anchor="middle" font-weight="bold" font-size="15" font-style="italic">CanBeShipped</text>
+  <line x1="40" y1="688" x2="340" y2="688" stroke="#222"/>
+  <line x1="40" y1="704" x2="340" y2="704" stroke="#222"/>
+  <text x="50" y="727" font-style="italic">+calculate_shipping_cost(): float</text>
+  </g>
+  <g><rect x="40" y="880" width="520" height="144" fill="#fffdf2" stroke="#222" stroke-width="1.5"/>
+  <rect x="40" y="880" width="520" height="32" fill="#f3e9c6" stroke="#222" stroke-width="1.5"/>
+  <text x="300.0" y="901" text-anchor="middle" font-weight="bold" font-size="15">FileHandler</text>
+  <line x1="40" y1="912" x2="560" y2="912" stroke="#222"/>
+  <text x="50" y="935">-filename: str</text>
+  <line x1="40" y1="948" x2="560" y2="948" stroke="#222"/>
+  <text x="50" y="971">+file_exists(): bool</text>
+  <text x="50" y="991">+load(inventory: Inventory): Supplier [0..*]</text>
+  <text x="50" y="1011">+save(inventory: Inventory, suppliers: Supplier [0..*]): None</text>
+  </g>
+  <text x="40" y="1044" font-size="12" text-anchor="start" fill="#555" font-family="Segoe UI, Arial, sans-serif">Uses Inventory, Supplier and ProductFactory to save/load inventory.json (dependency only).</text>
+  <polyline points="520,230 410,230" fill="none" stroke="#222" stroke-width="1.5" marker-end="url(#open)"/>
+  <text x="420" y="222" font-size="14" text-anchor="start" fill="#222" font-family="Segoe UI, Arial, sans-serif" font-weight="bold">1</text>
+  <text x="500" y="222" font-size="14" text-anchor="end" fill="#222" font-family="Segoe UI, Arial, sans-serif" font-weight="bold">0..*</text>
+  <text x="465" y="250" font-size="12" text-anchor="middle" fill="#222" font-family="Segoe UI, Arial, sans-serif" font-style="italic">supplies</text>
+  <polyline points="990,200 1090,200" fill="none" stroke="#222" stroke-width="1.5" marker-end="url(#diamond)"/>
+  <text x="1080" y="192" font-size="14" text-anchor="end" fill="#222" font-family="Segoe UI, Arial, sans-serif" font-weight="bold">0..1</text>
+  <text x="998" y="192" font-size="14" text-anchor="start" fill="#222" font-family="Segoe UI, Arial, sans-serif" font-weight="bold">0..*</text>
+  <text x="1040" y="222" font-size="12" text-anchor="middle" fill="#222" font-family="Segoe UI, Arial, sans-serif" font-style="italic">contains</text>
+  <polyline points="1090,540 1040,540 1040,400 990,400" fill="none" stroke="#222" stroke-width="1.5" marker-end="url(#open)"/>
+  <text x="998" y="392" font-size="14" text-anchor="start" fill="#222" font-family="Segoe UI, Arial, sans-serif" font-weight="bold">1</text>
+  <text x="1084" y="532" font-size="14" text-anchor="end" fill="#222" font-family="Segoe UI, Arial, sans-serif" font-weight="bold">0..*</text>
+  <text x="1046" y="470" font-size="12" text-anchor="start" fill="#222" font-family="Segoe UI, Arial, sans-serif" font-style="italic">refers to</text>
+  <polyline points="1285,634 1285,790" fill="none" stroke="#222" stroke-width="1.5" marker-end="url(#filled)"/>
+  <text x="1293" y="782" font-size="14" text-anchor="start" fill="#222" font-family="Segoe UI, Arial, sans-serif" font-weight="bold">1</text>
+  <text x="1293" y="652" font-size="14" text-anchor="start" fill="#222" font-family="Segoe UI, Arial, sans-serif" font-weight="bold">0..*</text>
+  <text x="1340" y="717.0" font-size="12" text-anchor="start" fill="#222" font-family="Segoe UI, Arial, sans-serif" font-style="italic">owns (lifecycle)</text>
+  <polyline points="570,610 570,560 920,560 920,610" fill="none" stroke="#222" stroke-width="1.5"/>
+  <polyline points="755,560 755,430" fill="none" stroke="#222" stroke-width="1.5" marker-end="url(#triangle)"/>
+  <polyline points="400,700 340,700" fill="none" stroke="#222" stroke-width="1.5" stroke-dasharray="7,5" marker-end="url(#triangle)"/>
+  <rect x="590" y="890" width="440" height="232" fill="#fff" stroke="#999"/>
+  <text x="602" y="912" font-size="13" text-anchor="start" fill="#222" font-family="Segoe UI, Arial, sans-serif" font-weight="bold">Legend</text>
+  <polyline points="700,938 610,938" fill="none" stroke="#222" stroke-width="1.5" marker-end="url(#triangle)"/>
+  <text x="715" y="943" font-size="12" text-anchor="start" fill="#222" font-family="Segoe UI, Arial, sans-serif">Inheritance (is-a)</text>
+  <polyline points="700,965 610,965" fill="none" stroke="#222" stroke-width="1.5" stroke-dasharray="7,5" marker-end="url(#triangle)"/>
+  <text x="715" y="970" font-size="12" text-anchor="start" fill="#222" font-family="Segoe UI, Arial, sans-serif">Implements interface</text>
+  <polyline points="700,992 610,992" fill="none" stroke="#222" stroke-width="1.5" marker-end="url(#open)"/>
+  <text x="715" y="997" font-size="12" text-anchor="start" fill="#222" font-family="Segoe UI, Arial, sans-serif">Association (knows-about / uses)</text>
+  <polyline points="700,1019 610,1019" fill="none" stroke="#222" stroke-width="1.5" marker-end="url(#diamond)"/>
+  <text x="715" y="1024" font-size="12" text-anchor="start" fill="#222" font-family="Segoe UI, Arial, sans-serif">Aggregation (has-a, parts independent)</text>
+  <polyline points="700,1046 610,1046" fill="none" stroke="#222" stroke-width="1.5" marker-end="url(#filled)"/>
+  <text x="715" y="1051" font-size="12" text-anchor="start" fill="#222" font-family="Segoe UI, Arial, sans-serif">Composition (owns, lifecycle tied)</text>
+  <polyline points="700,1073 610,1073" fill="none" stroke="#222" stroke-width="1.5" stroke-dasharray="7,5" marker-end="url(#open)"/>
+  <text x="715" y="1078" font-size="12" text-anchor="start" fill="#222" font-family="Segoe UI, Arial, sans-serif">Dependency (e.g. «creates», nothing stored)</text>
+  <text x="602" y="1108" font-size="12" text-anchor="start" fill="#555" font-family="Segoe UI, Arial, sans-serif">−  private   +  public   italic = abstract   underline = static</text>
+  <g><rect x="40" y="380" width="400" height="138" fill="#fffdf2" stroke="#222" stroke-width="1.5"/>
+  <rect x="40" y="380" width="400" height="32" fill="#f3e9c6" stroke="#222" stroke-width="1.5"/>
+  <text x="240.0" y="401" text-anchor="middle" font-weight="bold" font-size="15">ProductFactory</text>
+  <line x1="40" y1="412" x2="440" y2="412" stroke="#222"/>
+  <line x1="40" y1="428" x2="440" y2="428" stroke="#222"/>
+  <text x="50.0" y="451" text-decoration="underline">+create(product_type: str, product_id: str,</text>
+  <text x="103.9" y="471" text-decoration="underline">name: str, price: float,</text>
+  <text x="103.9" y="491" text-decoration="underline">stock_quantity: int, supplier: Supplier,</text>
+  <text x="103.9" y="511" text-decoration="underline">extra: float = 0.0): Product</text>
+  </g>
+  <polyline points="440,410 520,410" fill="none" stroke="#222" stroke-width="1.5" stroke-dasharray="7,5" marker-end="url(#open)"/>
+  <text x="480" y="402" font-size="12" text-anchor="middle" fill="#222" font-family="Segoe UI, Arial, sans-serif" font-style="italic">«creates»</text>
+  <text x="40" y="538" font-size="12" text-anchor="start" fill="#555" font-family="Segoe UI, Arial, sans-serif">Unknown product_type raises ValueError. Only the factory</text>
+  <text x="40" y="554" font-size="12" text-anchor="start" fill="#555" font-family="Segoe UI, Arial, sans-serif">calls the PhysicalProduct / DigitalProduct constructors.</text>
+  <g><rect x="1040" y="1160" width="450" height="100" fill="#fffdf2" stroke="#222" stroke-width="1.5"/>
+  <rect x="1040" y="1160" width="450" height="48" fill="#f3e9c6" stroke="#222" stroke-width="1.5"/>
+  <text x="1265.0" y="1181" text-anchor="middle" font-size="12">«abstract»</text>
+  <text x="1265.0" y="1199" text-anchor="middle" font-weight="bold" font-size="15" font-style="italic">DiscountStrategy</text>
+  <line x1="1040" y1="1208" x2="1490" y2="1208" stroke="#222"/>
+  <line x1="1040" y1="1224" x2="1490" y2="1224" stroke="#222"/>
+  <text x="1050.0" y="1247" font-style="italic">+apply(total: float): float {abstract}</text>
+  </g>
+  <polyline points="1265,1096 1265,1160" fill="none" stroke="#222" stroke-width="1.5" marker-end="url(#open)"/>
+  <text x="1273" y="1116" font-size="14" text-anchor="start" fill="#222" font-family="Segoe UI, Arial, sans-serif" font-weight="bold">0..*</text>
+  <text x="1273" y="1152" font-size="14" text-anchor="start" fill="#222" font-family="Segoe UI, Arial, sans-serif" font-weight="bold">1</text>
+  <text x="1257" y="1134" font-size="12" text-anchor="end" fill="#222" font-family="Segoe UI, Arial, sans-serif" font-style="italic">uses (shared, swapped with set_discount)</text>
+  <g><rect x="40" y="1322" width="250" height="144" fill="#fffdf2" stroke="#222" stroke-width="1.5"/>
+  <rect x="40" y="1322" width="250" height="32" fill="#f3e9c6" stroke="#222" stroke-width="1.5"/>
+  <text x="165.0" y="1343" text-anchor="middle" font-weight="bold" font-size="15">NoDiscount</text>
+  <line x1="40" y1="1354" x2="290" y2="1354" stroke="#222"/>
+  <line x1="40" y1="1370" x2="290" y2="1370" stroke="#222"/>
+  <text x="50.0" y="1393">+apply(total: float): float</text>
+  </g>
+  <g><rect x="320" y="1322" width="340" height="144" fill="#fffdf2" stroke="#222" stroke-width="1.5"/>
+  <rect x="320" y="1322" width="340" height="32" fill="#f3e9c6" stroke="#222" stroke-width="1.5"/>
+  <text x="490.0" y="1343" text-anchor="middle" font-weight="bold" font-size="15">PercentageDiscount</text>
+  <line x1="320" y1="1354" x2="660" y2="1354" stroke="#222"/>
+  <text x="330" y="1377">-percentage: float {0 &lt; p &lt;= 100}</text>
+  <line x1="320" y1="1390" x2="660" y2="1390" stroke="#222"/>
+  <text x="330.0" y="1413">+PercentageDiscount(percentage: float)</text>
+  <text x="330.0" y="1433">+apply(total: float): float</text>
+  </g>
+  <g><rect x="690" y="1322" width="400" height="144" fill="#fffdf2" stroke="#222" stroke-width="1.5"/>
+  <rect x="690" y="1322" width="400" height="32" fill="#f3e9c6" stroke="#222" stroke-width="1.5"/>
+  <text x="890.0" y="1343" text-anchor="middle" font-weight="bold" font-size="15">BulkDiscount</text>
+  <line x1="690" y1="1354" x2="1090" y2="1354" stroke="#222"/>
+  <text x="700" y="1377">-threshold: float</text>
+  <text x="700" y="1397">-amount: float</text>
+  <line x1="690" y1="1410" x2="1090" y2="1410" stroke="#222"/>
+  <text x="700.0" y="1433">+BulkDiscount(threshold: float, amount: float)</text>
+  <text x="700.0" y="1453">+apply(total: float): float</text>
+  </g>
+  <g><rect x="1120" y="1322" width="370" height="144" fill="#fffdf2" stroke="#222" stroke-width="1.5"/>
+  <rect x="1120" y="1322" width="370" height="32" fill="#f3e9c6" stroke="#222" stroke-width="1.5"/>
+  <text x="1305.0" y="1343" text-anchor="middle" font-weight="bold" font-size="15">StudentDiscount</text>
+  <line x1="1120" y1="1354" x2="1490" y2="1354" stroke="#222"/>
+  <text x="1130" y="1377">+RATE: float = 0.05</text>
+  <line x1="1120" y1="1390" x2="1490" y2="1390" stroke="#222"/>
+  <text x="1130.0" y="1413">+apply(total: float): float</text>
+  </g>
+  <polyline points="165.0,1300 1305.0,1300" fill="none" stroke="#222" stroke-width="1.5"/>
+  <polyline points="165.0,1322 165.0,1300" fill="none" stroke="#222" stroke-width="1.5"/>
+  <polyline points="490.0,1322 490.0,1300" fill="none" stroke="#222" stroke-width="1.5"/>
+  <polyline points="890.0,1322 890.0,1300" fill="none" stroke="#222" stroke-width="1.5"/>
+  <polyline points="1305.0,1322 1305.0,1300" fill="none" stroke="#222" stroke-width="1.5"/>
+  <polyline points="1265,1300 1265,1260" fill="none" stroke="#222" stroke-width="1.5" marker-end="url(#triangle)"/>
+  <text x="40" y="1488" font-size="12" text-anchor="start" fill="#555" font-family="Segoe UI, Arial, sans-serif">Strategy pattern: Order only calls apply(). A new discount is a new subclass of DiscountStrategy; Order does not change.</text>
+</svg>
